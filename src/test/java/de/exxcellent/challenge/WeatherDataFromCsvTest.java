@@ -2,6 +2,8 @@ package de.exxcellent.challenge;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WeatherDataFromCsvTest {
@@ -10,7 +12,13 @@ public class WeatherDataFromCsvTest {
     @Test
     void getWeatherDataFromCsv() {
 
-        WeatherData weatherData = new WeatherDataFromCsv(TEST_WEATHER_DATA);
-        assertEquals(weatherData.getNumberEntries(), 30);
+        try {
+            WeatherData weatherData = new WeatherDataFromCsv(TEST_WEATHER_DATA);
+            assertEquals( 30, weatherData.getNumberEntries());
+            assertEquals( 1, weatherData.getDay(0));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }
