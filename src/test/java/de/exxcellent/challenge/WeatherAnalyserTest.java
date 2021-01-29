@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Andreas Reichel
  */
 class WeatherAnalyserTest {
-
+    private final static String TEST_WEATHER_DATA="src/test/resources/weather.csv";
     private String successLabel = "not successful";
 
     @BeforeEach
@@ -24,7 +24,8 @@ class WeatherAnalyserTest {
 
     @Test
     void getSmallestTemperatureSpread() {
-        WeatherAnalyser weatherAnalyser = new WeatherAnalyser("weather.csv");
+
+        WeatherAnalyser weatherAnalyser = new WeatherAnalyser(TEST_WEATHER_DATA);
         assertEquals(weatherAnalyser.getDayWithSmallestTemperatureSpread(), 40);
     }
 
