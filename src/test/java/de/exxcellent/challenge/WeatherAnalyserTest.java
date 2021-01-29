@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Example JUnit 5 test case.
- * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
+ * @author Andreas Reichel
  */
-class AppTest {
+class WeatherAnalyserTest {
 
     private String successLabel = "not successful";
 
@@ -24,8 +23,9 @@ class AppTest {
     }
 
     @Test
-    void runWeather() {
-        WeatherChallenge.main("--weather", "weather.csv");
+    void getSmallestTemperatureSpread() {
+        WeatherAnalyser weatherAnalyser = new WeatherAnalyser("weather.csv");
+        assertEquals(weatherAnalyser.getDayWithSmallestTemperatureSpread(), 40);
     }
 
 }

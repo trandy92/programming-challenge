@@ -6,7 +6,7 @@ package de.exxcellent.challenge;
  *
  * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
  */
-public final class App {
+public final class WeatherChallenge {
 
     /**
      * This is the main entry method of your program.
