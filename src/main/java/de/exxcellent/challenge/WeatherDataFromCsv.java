@@ -1,52 +1,24 @@
 package de.exxcellent.challenge;
 
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class WeatherDataFromCsv implements WeatherData {
-    List<HashMap<String,Float>> weatherData = new ArrayList<HashMap<String,Float>>();
+    List<Map<String, String>> weatherData = new ArrayList<>();
     private final static String DATA_SEPERATOR=",";
 
-    public WeatherDataFromCsv(String csvFile) throws FileNotFoundException {
-        BufferedReader br = new BufferedReader(new FileReader(csvFile));
-        try {
-            String line = br.readLine();
-            String[] headerTokens=  line.split(",");
-
-            line = br.readLine();
-            while (line != null){
-
-                String[] values=  line.split(",");
-                HashMap<String,Float> weatherDataEntry = new HashMap<String,Float>();
-
-                int columnIndex = 0;
-
-                for(String value : values)
-                {
-                    weatherDataEntry.put(headerTokens[columnIndex], Float.valueOf(value));
-                    columnIndex++;
-                }
-                weatherData.add(weatherDataEntry);
-                line = br.readLine();
-                System.out.println("size "+ weatherData.size());
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public WeatherDataFromCsv(String csvFile) throws IOException {
+        weatherData = CSVParser.parse(new File(csvFile));
     }
 
     @Override
     public int getDay(int indexEntry) {
-        return weatherData.get(indexEntry).get("Day").intValue();
+        return Integer.getInteger(weatherData.get(indexEntry).get("Day"));
     }
 
     @Override
