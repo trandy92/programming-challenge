@@ -8,7 +8,6 @@ import java.util.*;
 public class WeatherDataFromCsv implements WeatherData {
     List<Map<String, String>> weatherData = new ArrayList<>();
     private final static Set<String> EXPECTED_HEADER_COLUMNS =Set.<String>of("Day","MxT","MnT","AvT","AvDP","1HrP TPcpn","PDir","AvSp","Dir","MxS","SkyC","MxR","Mn","R AvSLP");
-    private final static String DATA_SEPERATOR=",";
 
     public WeatherDataFromCsv(File csvFile) throws IOException {
         weatherData = CSVParser.parse(csvFile);
@@ -49,8 +48,73 @@ public class WeatherDataFromCsv implements WeatherData {
     }
 
     @Override
-    public int getDay(int indexEntry) {
-        return Integer.parseInt(weatherData.get(indexEntry).get("Day"));
+    public int getDay(int index) {
+        return Integer.parseInt(weatherData.get(index).get("Day"));
+    }
+
+    @Override
+    public int getMxT(int index) {
+        return Integer.parseInt(weatherData.get(index).get("MxT"));
+    }
+
+    @Override
+    public int getMnT(int index) {
+        return Integer.parseInt(weatherData.get(index).get("MnT"));
+    }
+
+    @Override
+    public int getAvT(int index) {
+        return Integer.parseInt(weatherData.get(index).get("AvT"));
+    }
+
+    @Override
+    public float getAvDP(int index) {
+        return Float.parseFloat(weatherData.get(index).get("AvDP"));
+    }
+
+    @Override
+    public int get1HrP_TPcpn(int index) {
+        return Integer.parseInt(weatherData.get(index).get("1HrP TPcpn"));
+    }
+
+    @Override
+    public int getPDir(int index) {
+        return Integer.parseInt(weatherData.get(index).get("PDir"));
+    }
+
+    @Override
+    public float getAvSp(int index) {
+        return Float.parseFloat(weatherData.get(index).get("AvSp"));
+    }
+
+    @Override
+    public int getDir(int index) {
+        return Integer.parseInt(weatherData.get(index).get("Dir"));
+    }
+
+    @Override
+    public int getMxS(int index) {
+        return Integer.parseInt(weatherData.get(index).get("MxS"));
+    }
+
+    @Override
+    public float getSkyC(int index) {
+        return Float.parseFloat(weatherData.get(index).get("SkyC"));
+    }
+
+    @Override
+    public int getMxR(int index) {
+        return Integer.parseInt(weatherData.get(index).get("MxR"));
+    }
+
+    @Override
+    public int getMn(int index) {
+        return Integer.parseInt(weatherData.get(index).get("Mn"));
+    }
+
+    @Override
+    public float getR_AvSLP(int index) {
+        return Float.parseFloat(weatherData.get(index).get("AvSLP"));
     }
 
     @Override
