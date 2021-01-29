@@ -16,6 +16,5 @@ public interface WeatherData {
     public int getMn(int index);
     public float getR_AvSLP(int index);
 
-
     public int getNumberEntries();
 }

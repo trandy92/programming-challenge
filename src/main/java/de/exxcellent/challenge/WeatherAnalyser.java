@@ -1,19 +1,37 @@
 package de.exxcellent.challenge;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
 
  * @author Andreas Reichel <andreas_reichel@online.de>
  */
 public class WeatherAnalyser {
-    private File weatherDataFile;
-    WeatherAnalyser(String weatherDataFilePath)
-    {
-        weatherDataFile = new File(weatherDataFilePath);
+    WeatherData weatherData;
+    WeatherAnalyser(File weatherDataFile) throws IOException {
+         this.weatherData = new WeatherDataFromCsv(weatherDataFile);
     }
     public int getDayWithSmallestTemperatureSpread() {
-        System.out.println(weatherDataFile.exists());
-        return 0;
+        Integer dayWithSmallestTemperatureSpread=null;
+        Float smallestTemperatureSpread = null;
+        for (int i = 0; i < weatherData.getNumberEntries(); i++)
+        {
+            float temperatureSpread=weatherData.getMxT(i) - weatherData.getMnT(i);
+            if(dayWithSmallestTemperatureSpread==null)
+            {
+                smallestTemperatureSpread=temperatureSpread;
+                dayWithSmallestTemperatureSpread=weatherData.getDay(i);
+            }else
+            {
+                if(temperatureSpread<=smallestTemperatureSpread)
+                {
+                    smallestTemperatureSpread=temperatureSpread;
+                    dayWithSmallestTemperatureSpread=weatherData.getDay(i);
+                }
+            }
+
+        }
+        return dayWithSmallestTemperatureSpread;
     }
 }
