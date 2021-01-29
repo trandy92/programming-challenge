@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CSVParserTest {
     @Test
     void parseEmptyCSV() throws Exception {
-        File emptyCSV=getTestCSVFile("");
+        File emptyCSV=TestUtils.getTestCSVFile("");
         assertThrows(InvalidCSVFormatException.class, () -> { CSVParser.parse(emptyCSV); });
     }
 
     @Test
     void parseValidCSV_OneEntry() throws Exception {
-            File csv=getTestCSVFile("Day\n1");
+            File csv=TestUtils.getTestCSVFile("Day\n1");
             List<Map<String, String>> expectedCSVObject= new ArrayList<Map<String,String>>();
             expectedCSVObject.add(Map.of(
                 "Day", "1"));
@@ -33,13 +33,13 @@ public class CSVParserTest {
 
     @Test
     void parseInvalidCSV_noValue() throws Exception {
-        File csv=getTestCSVFile("Day\n");
+        File csv=TestUtils.getTestCSVFile("Day\n");
         assertThrows(InvalidCSVFormatException.class, () -> { CSVParser.parse(csv); });
     }
 
     @Test
     void parseValidCSV_emptyValue() throws Exception {
-        File csv=getTestCSVFile("Day\n ");
+        File csv=TestUtils.getTestCSVFile("Day\n ");
         List<Map<String, String>> expectedCSVObject= new ArrayList<Map<String,String>>();
         expectedCSVObject.add(Map.of(
                 "Day", " "));
@@ -48,7 +48,7 @@ public class CSVParserTest {
 
     @Test
     void parseValidCSV_twoColumns() throws Exception {
-        File csv=getTestCSVFile("Day,MxT\n1,2");
+        File csv=TestUtils.getTestCSVFile("Day,MxT\n1,2");
         List<Map<String, String>> expectedCSVObject= new ArrayList<Map<String,String>>();
         expectedCSVObject.add(Map.of(
                 "Day", "1",
@@ -65,19 +65,12 @@ public class CSVParserTest {
 
     @Test
     void parseInvalidCSV_twoColumns_onlyOneValue() throws Exception {
-        File csv=getTestCSVFile("Day,MxT\n1");
+        File csv=TestUtils.getTestCSVFile("Day,MxT\n1");
         List<Map<String, String>> expectedCSVObject= new ArrayList<Map<String,String>>();
         assertThrows(InvalidCSVFormatException.class, () -> { CSVParser.parse(csv); });
     }
 
-    private File getTestCSVFile(String content) throws IOException {
-        File file = File.createTempFile( "csvFile", "csv");
-        FileWriter writer = new FileWriter(file);
-        file.deleteOnExit();
-        writer.write(content);
-        writer.close();
-        return file;
-    }
+
 
 }
 

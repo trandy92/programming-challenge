@@ -2,23 +2,55 @@ package de.exxcellent.challenge;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class WeatherDataFromCsv implements WeatherData {
     List<Map<String, String>> weatherData = new ArrayList<>();
+    private final static Set<String> EXPECTED_HEADER_COLUMNS =Set.<String>of("Day","MxT","MnT","AvT","AvDP","1HrP TPcpn","PDir","AvSp","Dir","MxS","SkyC","MxR","Mn","R AvSLP");
     private final static String DATA_SEPERATOR=",";
 
-    public WeatherDataFromCsv(String csvFile) throws IOException {
-        weatherData = CSVParser.parse(new File(csvFile));
+    public WeatherDataFromCsv(File csvFile) throws IOException {
+        weatherData = CSVParser.parse(csvFile);
+
+        if(isValidFormat() == false)
+        {
+            throw new InvalidWeatherDataException("Format of weather data is not correct");
+        }
+    }
+
+    private boolean isValidFormat()
+    {
+        //Maybe not a good idea to check every data for valid format
+        for(Map<String,String> weatherDataEntry : weatherData)
+        {
+            try {
+                Integer.parseInt(weatherDataEntry.get("Day"));
+                Integer.parseInt(weatherDataEntry.get("MxT"));
+                Integer.parseInt(weatherDataEntry.get("MnT"));
+                Integer.parseInt(weatherDataEntry.get("AvT"));
+                Float.parseFloat(weatherDataEntry.get("AvDP"));
+                Integer.parseInt(weatherDataEntry.get("1HrP TPcpn"));
+                Integer.parseInt(weatherDataEntry.get("PDir"));
+                Float.parseFloat(weatherDataEntry.get("AvSp"));
+                Integer.parseInt(weatherDataEntry.get("Dir"));
+                Integer.parseInt(weatherDataEntry.get("MxS"));
+                Float.parseFloat(weatherDataEntry.get("SkyC"));
+                Integer.parseInt(weatherDataEntry.get("MxR"));
+                Integer.parseInt(weatherDataEntry.get("Mn"));
+                Float.parseFloat(weatherDataEntry.get("R AvSLP"));
+            }catch(Exception ex)
+            {
+                return false;
+            }
+        }
+        Set<String> headerColumns = weatherData.get(0).keySet();
+        return EXPECTED_HEADER_COLUMNS.equals(headerColumns);
     }
 
     @Override
     public int getDay(int indexEntry) {
-        return Integer.getInteger(weatherData.get(indexEntry).get("Day"));
+        return Integer.parseInt(weatherData.get(indexEntry).get("Day"));
     }
 
     @Override
