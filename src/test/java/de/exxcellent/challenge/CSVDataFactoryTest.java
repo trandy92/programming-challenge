@@ -13,13 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CSVDataFactoryTest {
     @Test
     void parseEmptyCSV() throws Exception {
-        File emptyCSV=TestUtils.getTestCSVFile("");
+        File emptyCSV=TestUtils.getTempCSVFile("");
         assertThrows(InvalidCSVFormatException.class, () -> { CSVDataFactory.parse(emptyCSV); });
     }
 
     @Test
     void parseValidCSV_OneEntry() throws Exception {
-            File csv=TestUtils.getTestCSVFile("Day\n1");
+            File csv=TestUtils.getTempCSVFile("Day\n1");
             List<Map<String, String>> expectedCSVObject= new ArrayList<Map<String,String>>();
             expectedCSVObject.add(Map.of(
                 "Day", "1"));
@@ -29,13 +29,13 @@ public class CSVDataFactoryTest {
 
     @Test
     void parseInvalidCSV_noValue() throws Exception {
-        File csv=TestUtils.getTestCSVFile("Day\n");
+        File csv=TestUtils.getTempCSVFile("Day\n");
         assertThrows(InvalidCSVFormatException.class, () -> { CSVDataFactory.parse(csv); });
     }
 
     @Test
     void parseValidCSV_emptyValue() throws Exception {
-        File csv=TestUtils.getTestCSVFile("Day\n ");
+        File csv=TestUtils.getTempCSVFile("Day\n ");
         List<Map<String, String>> expectedCSVObject= new ArrayList<Map<String,String>>();
         expectedCSVObject.add(Map.of(
                 "Day", " "));
@@ -44,7 +44,7 @@ public class CSVDataFactoryTest {
 
     @Test
     void parseValidCSV_twoColumns() throws Exception {
-        File csv=TestUtils.getTestCSVFile("Day,MxT\n1,2");
+        File csv=TestUtils.getTempCSVFile("Day,MxT\n1,2");
         List<Map<String, String>> expectedCSVObject= new ArrayList<Map<String,String>>();
         expectedCSVObject.add(Map.of(
                 "Day", "1",
@@ -61,7 +61,7 @@ public class CSVDataFactoryTest {
 
     @Test
     void parseInvalidCSV_twoColumns_onlyOneValue() throws Exception {
-        File csv=TestUtils.getTestCSVFile("Day,MxT\n1");
+        File csv=TestUtils.getTempCSVFile("Day,MxT\n1");
         List<Map<String, String>> expectedCSVObject= new ArrayList<Map<String,String>>();
         assertThrows(InvalidCSVFormatException.class, () -> { CSVDataFactory.parse(csv); });
     }

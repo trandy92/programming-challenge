@@ -1,7 +1,6 @@
 package de.exxcellent.challenge;
 
 
-import java.io.*;
 import java.util.*;
 
 
@@ -42,7 +41,7 @@ public class WeatherData{
 
     public int getDayWithSmallestTemperatureSpread()
     {
-        int index = DataAnalyser.getEntryWithSmallestSpread(weatherData, "MxT", "MnT");
+        int index = DataAnalyser.getIndexOfEntryWithSmallestSpread(weatherData, "MxT", "MnT");
         return getDay(index);
     }
 

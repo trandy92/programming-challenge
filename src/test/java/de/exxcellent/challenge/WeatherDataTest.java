@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class WeatherDataTest {
     @Test
     void getWeatherDataFromCsv() throws IOException {
-            File csv = TestUtils.getTestCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n1,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
+            File csv = TestUtils.getTempCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n1,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
             WeatherData weatherData = new WeatherData(new CSVDataFactory(csv));
             assertEquals( 2, weatherData.getNumberEntries());
             assertEquals( 1, weatherData.getDay(0));
@@ -26,19 +26,19 @@ public class WeatherDataTest {
 
     @Test
     void getWeatherDataFromCsv_invalidFormat() throws IOException {
-        File csv = TestUtils.getTestCSVFile("WrongColumn,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n1,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
+        File csv = TestUtils.getTempCSVFile("WrongColumn,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n1,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
         assertThrows(InvalidWeatherDataException.class, () -> { new WeatherData(new CSVDataFactory(csv)); });
     }
 
     @Test
     void getWeatherDataFromCsv_invalidTypeOfValue() throws IOException {
-        File csv = TestUtils.getTestCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\nwrongValue,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
+        File csv = TestUtils.getTempCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\nwrongValue,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
         assertThrows(InvalidWeatherDataException.class, () -> { new WeatherData(new CSVDataFactory(csv)); });
     }
 
     @Test
     void getWeatherDataFromCsv_invalidTypeOfValue_dayIsFloatInsteadOfInteger() throws IOException {
-        File csv = TestUtils.getTestCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n0.5,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
+        File csv = TestUtils.getTempCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n0.5,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
         assertThrows(InvalidWeatherDataException.class, () -> { new WeatherData(new CSVDataFactory(csv)); });
     }
 }

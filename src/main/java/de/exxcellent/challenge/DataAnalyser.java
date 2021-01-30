@@ -9,7 +9,7 @@ import java.util.Map;
  * Visible only in this package!
  */
 class DataAnalyser {
-    public static int getEntryWithSmallestSpread(List<Map<String, String>> data,String headerColumn1, String headerColumn2) {
+    public static int getIndexOfEntryWithSmallestSpread(List<Map<String, String>> data, String headerColumn1, String headerColumn2) {
         Integer entryWithSmallestSpread=null;
         Float smallestSpread = null;
         for (int i = 0; i < data.size(); i++)

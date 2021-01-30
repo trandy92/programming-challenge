@@ -1,6 +1,5 @@
 package de.exxcellent.challenge;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +48,7 @@ public class FootballData {
 
     public String getTeamWithSmallestDifferenceBetweenGoalsAndGoalsAllowed()
     {
-        int index = DataAnalyser.getEntryWithSmallestSpread(footballData,"Goals", "Goals Allowed");
+        int index = DataAnalyser.getIndexOfEntryWithSmallestSpread(footballData,"Goals", "Goals Allowed");
 
         return getTeam(index);
     }

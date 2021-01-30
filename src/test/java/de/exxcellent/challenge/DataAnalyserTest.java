@@ -27,9 +27,9 @@ class DataAnalyserTest {
 
     @Test
     void getEntryWithSmallestSpread() throws IOException {
-        File csv = TestUtils.getTestCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n1,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
+        File csv = TestUtils.getTempCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n1,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
         CSVDataFactory csvDataFactory = new CSVDataFactory(csv);
-        int indexOfEntryWithSmallestSpread = DataAnalyser.getEntryWithSmallestSpread(csvDataFactory.getData(),"MxT", "MnT");
+        int indexOfEntryWithSmallestSpread = DataAnalyser.getIndexOfEntryWithSmallestSpread(csvDataFactory.getData(),"MxT", "MnT");
         assertEquals(1, indexOfEntryWithSmallestSpread);
     }
 

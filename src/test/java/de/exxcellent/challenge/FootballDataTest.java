@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class FootballDataTest {
     @Test
     void getFootballDataFromCsv() throws IOException {
-        File csv = TestUtils.getTestCSVFile("Team,Games,Wins,Losses,Draws,Goals,Goals Allowed,Points\nArsenal,38,26,9,3,79,36,87\nLiverpool,38,24,8,6,67,30,80\nManchester United,38,24,5,9,87,45,77");
+        File csv = TestUtils.getTempCSVFile("Team,Games,Wins,Losses,Draws,Goals,Goals Allowed,Points\nArsenal,38,26,9,3,79,36,87\nLiverpool,38,24,8,6,67,30,80\nManchester United,38,24,5,9,87,45,77");
 
         FootballData footballData = new FootballData(new CSVDataFactory(csv));
 
@@ -22,7 +22,7 @@ public class FootballDataTest {
 
     @Test
     void getFootballDataFromCsv_Goals_smaller_GoalsAllowed() throws IOException {
-        File csv = TestUtils.getTestCSVFile("Team,Games,Wins,Losses,Draws,Goals,Goals Allowed,Points\nArsenal,38,26,9,3,79,36,87\nLiverpool,38,24,8,6,27,86,80\nManchester United,38,24,5,9,87,45,77");
+        File csv = TestUtils.getTempCSVFile("Team,Games,Wins,Losses,Draws,Goals,Goals Allowed,Points\nArsenal,38,26,9,3,79,36,87\nLiverpool,38,24,8,6,27,86,80\nManchester United,38,24,5,9,87,45,77");
 
         FootballData footballData = new FootballData(new CSVDataFactory(csv));
 
@@ -32,7 +32,7 @@ public class FootballDataTest {
 
     @Test
     void getFootballDataFromCsv_invalidFootballData() throws IOException {
-        File csv = TestUtils.getTestCSVFile("Day,Games,Wins,Losses,Draws,Goals,Goals Allowed,Points\nArsenal,38,26,9,3,79,36,87\nLiverpool,38,24,8,6,27,86,80\nManchester United,38,24,5,9,87,45,77");
+        File csv = TestUtils.getTempCSVFile("Day,Games,Wins,Losses,Draws,Goals,Goals Allowed,Points\nArsenal,38,26,9,3,79,36,87\nLiverpool,38,24,8,6,27,86,80\nManchester United,38,24,5,9,87,45,77");
         assertThrows(InvalidFootballDataException.class, () -> { new FootballData(new CSVDataFactory(csv)); });
     }
 }

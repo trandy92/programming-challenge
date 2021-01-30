@@ -21,7 +21,7 @@ public final class App {
             String domain=args[0];
             if(!domain.equals("--weather") && !domain.equals("--football"))
             {
-                System.err.printf("%s is not a valid option",domain);
+                System.err.printf("%s is not a valid option%n",domain);
             }
 
             File csvFile=new File(args[1]);
