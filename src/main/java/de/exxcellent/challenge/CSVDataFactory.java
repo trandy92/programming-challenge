@@ -10,7 +10,6 @@ import java.util.Map;
  * This class takes a CSV file and converts it to a Data Structure looking like this:
  * {0->{{"HeaderColumn1" : value1},{"HeaderColumn2" : value2}},
  *  1->{{"HeaderColumn1" : value1},{"HeaderColumn2" : value2}}
- * author: Andreas Reichel
  */
 public class CSVDataFactory implements DataFactory {
     File csvFile;

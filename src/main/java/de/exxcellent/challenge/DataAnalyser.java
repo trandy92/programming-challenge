@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Andreas Reichel <andreas_reichel@online.de>
  * Visible only in this package!
  */
 class DataAnalyser {
