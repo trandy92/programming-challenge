@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class FootballData {
-    List<Map<String, String>> footballData = new ArrayList<>();
+    List<Map<String, String>> footballData;
     private final static Set<String> EXPECTED_HEADER_COLUMNS =Set.<String>of("Team","Games","Wins","Losses","Draws","Goals","Goals Allowed","Points");
 
     public FootballData(DataFactory dataFactory) throws InvalidFootballDataException {
