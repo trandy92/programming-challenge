@@ -21,6 +21,7 @@ public class WeatherDataFromCsvTest {
             assertEquals( 74, weatherData.getAvT(0));
             assertEquals( 53.8, weatherData.getAvDP(0),0.01);
             assertEquals( 0, weatherData.get1HrP_TPcpn(0));
+            assertEquals(2, weatherData.getDayWithSmallestTemperatureSpread());
     }
 
     @Test

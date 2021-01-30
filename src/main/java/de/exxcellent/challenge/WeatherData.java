@@ -96,6 +96,12 @@ public class WeatherData{
         return Float.parseFloat(weatherData.get(index).get("AvSLP"));
     }
 
+    public int getDayWithSmallestTemperatureSpread()
+    {
+        int index = DataAnalyser.getEntryWithSmallestSpread(weatherData, "MxT", "MnT");
+        return getDay(index);
+    }
+
     public int getNumberEntries() {
         return weatherData.size();
     }
