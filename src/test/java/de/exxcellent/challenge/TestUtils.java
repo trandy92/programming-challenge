@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class TestUtils {
-    public static File getTestCSVFile(String content) throws IOException {
+    public static File getTempCSVFile(String content) throws IOException {
         File file = File.createTempFile( "csvFile", "csv");
         FileWriter writer = new FileWriter(file);
         file.deleteOnExit();

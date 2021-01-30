@@ -40,6 +40,16 @@ public class WeatherData{
         return EXPECTED_HEADER_COLUMNS.equals(headerColumns);
     }
 
+    public int getDayWithSmallestTemperatureSpread()
+    {
+        int index = DataAnalyser.getEntryWithSmallestSpread(weatherData, "MxT", "MnT");
+        return getDay(index);
+    }
+
+    public int getNumberEntries() {
+        return weatherData.size();
+    }
+
     public int getDay(int index) {
         return Integer.parseInt(weatherData.get(index).get("Day"));
     }
@@ -94,15 +104,5 @@ public class WeatherData{
 
     public float getR_AvSLP(int index) {
         return Float.parseFloat(weatherData.get(index).get("AvSLP"));
-    }
-
-    public int getDayWithSmallestTemperatureSpread()
-    {
-        int index = DataAnalyser.getEntryWithSmallestSpread(weatherData, "MxT", "MnT");
-        return getDay(index);
-    }
-
-    public int getNumberEntries() {
-        return weatherData.size();
     }
 }

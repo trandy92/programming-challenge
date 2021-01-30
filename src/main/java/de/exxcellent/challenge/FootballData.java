@@ -38,7 +38,6 @@ public class FootballData {
         Set<String> headerColumns = footballData.get(0).keySet();
         return EXPECTED_HEADER_COLUMNS.equals(headerColumns);
     }
-
     public int getNumberEntries() {
         return footballData.size();
     }
