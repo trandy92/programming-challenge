@@ -26,18 +26,18 @@ public class WeatherDataFromCsvTest {
     @Test
     void getWeatherDataFromCsv_invalidFormat() throws IOException {
         File csv = TestUtils.getTestCSVFile("WrongColumn,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n1,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
-        assertThrows(InvalidWeatherDataException.class, () -> { new WeatherDataFromCsv(csv); });
+        assertThrows(InvalidWeatherDataException.class, () -> { new WeatherData(new CSVDataFactory(csv)); });
     }
 
     @Test
     void getWeatherDataFromCsv_invalidTypeOfValue() throws IOException {
         File csv = TestUtils.getTestCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\nwrongValue,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
-        assertThrows(InvalidWeatherDataException.class, () -> { new WeatherDataFromCsv(csv); });
+        assertThrows(InvalidWeatherDataException.class, () -> { new WeatherData(new CSVDataFactory(csv)); });
     }
 
     @Test
     void getWeatherDataFromCsv_invalidTypeOfValue_dayIsFloatInsteadOfInteger() throws IOException {
         File csv = TestUtils.getTestCSVFile("Day,MxT,MnT,AvT,AvDP,1HrP TPcpn,PDir,AvSp,Dir,MxS,SkyC,MxR,Mn,R AvSLP\n0.5,88,59,74,53.8,0,280,9.6,270,17,1.6,93,23,1004.5\n2,79,63,71,46.5,0,330,8.7,340,23,3.3,70,28,1004.5");
-        assertThrows(InvalidWeatherDataException.class, () -> { new WeatherDataFromCsv(csv); });
+        assertThrows(InvalidWeatherDataException.class, () -> { new WeatherData(new CSVDataFactory(csv)); });
     }
 }
