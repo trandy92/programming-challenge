@@ -10,22 +10,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
  */
 class AppTest {
-
-    private String successLabel = "not successful";
-
-    @BeforeEach
-    void setUp() {
-        successLabel = "successful";
-    }
-
     @Test
-    void aPointlessTest() {
-        assertEquals("successful", successLabel, "My expectations were not met");
-    }
-
-    @Test
-    void runWeather() {
-        WeatherChallenge.main("--weather", "weather.csv");
+    void runApp() {
+        App.main("--weather", "src/main/resources/de/exxcellent/challenge/weather.csv");
+        App.main("--football", "src/main/resources/de/exxcellent/challenge/football.csv");
     }
 
 }
