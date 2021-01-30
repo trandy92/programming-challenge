@@ -23,7 +23,7 @@ public final class App {
             {
                 System.err.printf("%s is not a valid option",domain);
             }
-            
+
             File csvFile=new File(args[1]);
             DataFactory dataFactory = new CSVDataFactory(csvFile);
 

@@ -10,7 +10,7 @@ public class FootballData {
     List<Map<String, String>> footballData = new ArrayList<>();
     private final static Set<String> EXPECTED_HEADER_COLUMNS =Set.<String>of("Team","Games","Wins","Losses","Draws","Goals","Goals Allowed","Points");
 
-    public FootballData(DataFactory dataFactory) throws IOException {
+    public FootballData(DataFactory dataFactory) throws InvalidFootballDataException {
         footballData = dataFactory.getData();
 
         if(isValidFormat() == false)

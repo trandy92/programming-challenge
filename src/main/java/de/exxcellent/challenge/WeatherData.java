@@ -9,7 +9,7 @@ public class WeatherData{
     List<Map<String, String>> weatherData = new ArrayList<>();
     private final static Set<String> EXPECTED_HEADER_COLUMNS =Set.<String>of("Day","MxT","MnT","AvT","AvDP","1HrP TPcpn","PDir","AvSp","Dir","MxS","SkyC","MxR","Mn","R AvSLP");
 
-    public WeatherData(DataFactory dataFactory) throws IOException {
+    public WeatherData(DataFactory dataFactory) throws InvalidWeatherDataException{
         weatherData = dataFactory.getData();
 
         if(isValidFormat() == false)
