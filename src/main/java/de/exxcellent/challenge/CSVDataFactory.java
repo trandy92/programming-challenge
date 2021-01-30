@@ -12,7 +12,18 @@ import java.util.Map;
  *  1->{{"HeaderColumn1" : value1},{"HeaderColumn2" : value2}}
  * author: Andreas Reichel
  */
-public class CSVParser {
+public class CSVDataFactory implements DataFactory {
+    File csvFile;
+    List<Map<String, String>> csvData;
+    public CSVDataFactory(File file) throws IOException {
+        File csvFile=file;
+        csvData = parse(file);
+    }
+    @Override
+    public List<Map<String, String>> getData() {
+        return csvData;
+    }
+
     public static List<Map<String, String>>  parse(File file) throws IOException {
         List<Map<String, String>> csvData = new ArrayList<Map<String, String>>();
         BufferedReader br = new BufferedReader(new FileReader(file));

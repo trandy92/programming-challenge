@@ -4,13 +4,12 @@ import java.io.File;
 import java.io.IOException;
 
 /**
-
  * @author Andreas Reichel <andreas_reichel@online.de>
  */
 public class WeatherAnalyser {
     WeatherData weatherData;
-    WeatherAnalyser(File weatherDataFile) throws IOException {
-         this.weatherData = new WeatherDataFromCsv(weatherDataFile);
+    WeatherAnalyser(DataFactory dataFactory) throws IOException {
+         this.weatherData = new WeatherData(dataFactory);
     }
     public int getDayWithSmallestTemperatureSpread() {
         Integer dayWithSmallestTemperatureSpread=null;
@@ -30,7 +29,6 @@ public class WeatherAnalyser {
                     dayWithSmallestTemperatureSpread=weatherData.getDay(i);
                 }
             }
-
         }
         return dayWithSmallestTemperatureSpread;
     }
