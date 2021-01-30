@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FootballDataTest {
     @Test
@@ -27,5 +28,11 @@ public class FootballDataTest {
 
         assertEquals( 3, footballData.getNumberEntries());
         assertEquals("Manchester United", footballData.getTeamWithSmallestDifferenceBetweenGoalsAndGoalsAllowed());
+    }
+
+    @Test
+    void getFootballDataFromCsv_invalidFootballData() throws IOException {
+        File csv = TestUtils.getTestCSVFile("Day,Games,Wins,Losses,Draws,Goals,Goals Allowed,Points\nArsenal,38,26,9,3,79,36,87\nLiverpool,38,24,8,6,27,86,80\nManchester United,38,24,5,9,87,45,77");
+        assertThrows(InvalidFootballDataException.class, () -> { new FootballData(new CSVDataFactory(csv)); });
     }
 }
