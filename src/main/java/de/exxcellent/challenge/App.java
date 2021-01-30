@@ -19,13 +19,13 @@ public final class App {
         try
         {
             String domain=args[0];
-            File csvFile=new File(args[1]);
-            DataFactory dataFactory = new CSVDataFactory(csvFile);
-
             if(!domain.equals("--weather") && !domain.equals("--football"))
             {
                 System.err.printf("%s is not a valid option",domain);
             }
+            
+            File csvFile=new File(args[1]);
+            DataFactory dataFactory = new CSVDataFactory(csvFile);
 
             if(domain.equals("--weather"))
             {
