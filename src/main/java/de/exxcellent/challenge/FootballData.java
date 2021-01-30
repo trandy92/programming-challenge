@@ -15,7 +15,7 @@ public class FootballData {
 
         if(isValidFormat() == false)
         {
-            throw new InvalidWeatherDataException("Format of weather data is incorrect");
+            throw new InvalidFootballDataException("Format of weather data is incorrect");
         }
     }
 

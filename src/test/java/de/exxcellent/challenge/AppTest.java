@@ -14,6 +14,7 @@ class AppTest {
     void runApp() {
         App.main("--weather", "src/main/resources/de/exxcellent/challenge/weather.csv");
         App.main("--football", "src/main/resources/de/exxcellent/challenge/football.csv");
+        App.main("--invalid", "src/main/resources/de/exxcellent/challenge/football.csv");
     }
 
 }

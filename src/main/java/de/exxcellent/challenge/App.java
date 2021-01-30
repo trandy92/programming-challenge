@@ -18,18 +18,23 @@ public final class App {
     public static void main(String... args) {
         try
         {
-            if(args[0].equals("--weather"))
+            String domain=args[0];
+            File csvFile=new File(args[1]);
+            DataFactory dataFactory = new CSVDataFactory(csvFile);
+
+            if(!domain.equals("--weather") && !domain.equals("--football"))
             {
-                File csvFile = new File(args[1]);
-                DataFactory dataFactory = new CSVDataFactory(csvFile);
+                System.err.printf("%s is not a valid option",domain);
+            }
+
+            if(domain.equals("--weather"))
+            {
                 WeatherData weatherData = new WeatherData(dataFactory);
                 Integer dayWithSmallestTempSpread = weatherData.getDayWithSmallestTemperatureSpread();     // Your day analysis function call …
                 System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
             }
-            if(args[0].equals("--football"))
+            if(domain.equals("--football"))
             {
-                File csvFile = new File(args[1]);
-                DataFactory dataFactory = new CSVDataFactory(csvFile);
                 FootballData footballData = new FootballData(dataFactory);
                 String teamWithSmallestGoalSpread = footballData.getTeamWithSmallestDifferenceBetweenGoalsAndGoalsAllowed(); // Your goal analysis function call …
                 System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
@@ -38,9 +43,5 @@ public final class App {
             System.err.println("Something went wrong");
             e.printStackTrace();
         }
-
-
-
-
     }
 }
