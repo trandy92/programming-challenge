@@ -2,4 +2,4 @@
 
 image::Classes.jpg[]
 
-In above class diagram you can see how the different classes use together in order to meet the challenge.
+In above class diagram you see how the different classes are working together in order to meet the challenge.
