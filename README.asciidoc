@@ -1,6 +1,6 @@
 = eXXcellent programming challenge
 
-[[https://github.com/trandy92/programming-challenge/blob/challenge-weatherdata/Classes.jpg]]
+image::Classes.jpg[]
 
 This repository provides the project scaffold for a simple
 programming challenge. Though the challenge is very simple
