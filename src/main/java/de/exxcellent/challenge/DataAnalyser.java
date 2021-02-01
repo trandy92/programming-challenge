@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Visible only in this package!
+ * Visibility only needed in this package!
  */
 class DataAnalyser {
     public static int getIndexOfEntryWithSmallestSpread(List<Map<String, String>> data, String headerColumn1, String headerColumn2) {
